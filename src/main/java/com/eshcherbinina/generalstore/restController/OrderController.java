@@ -39,7 +39,7 @@ public class OrderController {
         return orderService.getOrder(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/cancel/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> cancelOrder(@PathVariable long id) {
         orderService.cancelOrder(id);
         return new ResponseEntity<>(messageSource.getMessage("api.response.order.cancellation.successful",

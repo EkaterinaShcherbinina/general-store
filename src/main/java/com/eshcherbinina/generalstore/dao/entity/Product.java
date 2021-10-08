@@ -27,10 +27,6 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-    /*@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="orderId")
-    private Order order;*/
-
     public Product() {
 
     }

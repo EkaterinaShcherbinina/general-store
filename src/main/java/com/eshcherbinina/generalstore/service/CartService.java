@@ -33,7 +33,7 @@ public class CartService implements ICartService{
 
     @Override
     public void clearCart(Cart cart) {
-
+        cart.clear();
     }
 
 

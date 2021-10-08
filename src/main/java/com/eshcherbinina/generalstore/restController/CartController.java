@@ -61,7 +61,7 @@ public class CartController {
 
     @RequestMapping(value = "/clear", method = RequestMethod.POST)
     public ResponseEntity<String> clearCart() {
-        cart.clear();
+        cartService.clearCart(cart);
         return new ResponseEntity<>(messageSource.getMessage("api.response.cart.cleaning.successful",
                 null, Locale.ENGLISH), HttpStatus.OK);
     }
@@ -77,6 +77,7 @@ public class CartController {
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
     public ResponseEntity<String> checkout() {
         orderService.createOrder(cart);
+        cartService.clearCart(cart);
         return new ResponseEntity<>(messageSource.getMessage("api.response.cart.checkout.successful",
                 null, Locale.ENGLISH), HttpStatus.OK);
     }

@@ -21,7 +21,6 @@ public class SessionHelper {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
-            //Set<Role> auth = authentication.getAuthorities();
             return currentUserName;
         }
         return "";

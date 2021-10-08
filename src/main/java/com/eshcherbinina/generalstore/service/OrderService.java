@@ -11,10 +11,13 @@ import com.eshcherbinina.generalstore.exception.*;
 import com.eshcherbinina.generalstore.utils.SessionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,13 +26,15 @@ public class OrderService implements IOrderService{
     private OrderRepository orderRepository;
     private UserRepository userRepository;
     private ProductRepository productRepository;
+    private MessageSource messageSource;
 
     @Autowired
     public OrderService(OrderRepository orderRepository, UserRepository userRepository,
-                        ProductRepository productRepository) {
+                        ProductRepository productRepository, MessageSource messageSource) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
+        this.messageSource = messageSource;
     }
 
     @Override
@@ -53,7 +58,17 @@ public class OrderService implements IOrderService{
 
     @Override
     public void cancelOrder(long id) {
-        userRepository.deleteById(id);
+        Order order = orderRepository.findById(id);
+        if(order == null) ExceptionCreator.throwException(ErrorType.ENTITY_NOT_FOUND,
+                "api.error.order.not.found", "api.error.order.cancel.failed", null);
+        if(order.getStatus() != OrderStatus.in_progress) throw new ResponseStatusException(
+                HttpStatus.CONFLICT,
+                messageSource.getMessage("api.response.order.cancellation.failed", null, Locale.ENGLISH));
+
+        String userName = SessionHelper.getCurrentUsername();
+        User user = userRepository.findByEmail(userName);
+        user.getOrders().remove(order);
+        userRepository.save(user);
     }
 
     @Override
@@ -63,7 +78,7 @@ public class OrderService implements IOrderService{
 
         String userName = SessionHelper.getCurrentUsername();
         if (userName.isEmpty()) ExceptionCreator.throwException(ErrorType.USER_NOT_AUTHORIZED,
-                "api.error.user.not.authorized", "api.error.order.creation.failed", null);
+                "api.error.user.not.authorized", "api.error.order.creation.username.failed", null);
         User user = userRepository.findByEmail(userName);
         if(user == null) ExceptionCreator.throwException(ErrorType.ENTITY_NOT_FOUND,
                 "api.error.user.not.found", "api.error.order.creation.failed", null);
