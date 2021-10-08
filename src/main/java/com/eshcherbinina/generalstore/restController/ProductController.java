@@ -46,9 +46,4 @@ public class ProductController {
         return new ResponseEntity<>(messageSource.getMessage("api.response.product.creation.successful",
                 null, Locale.ENGLISH), HttpStatus.CREATED);
     }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ProductDTO removeProduct(@PathVariable long id) {
-        return productService.getProduct(id);
-    }
 }

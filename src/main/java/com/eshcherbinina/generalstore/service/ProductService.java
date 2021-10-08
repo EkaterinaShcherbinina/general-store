@@ -41,12 +41,4 @@ public class ProductService implements IProductService{
     public void addNewProduct(ProductDTO product) {
         productRepository.save(product.toEntity());
     }
-
-    @Override
-    public void removeProduct(long id) {
-        Product product = productRepository.findById(id);
-        if(product == null) ExceptionCreator.throwException(ErrorType.ENTITY_NOT_FOUND,
-                "api.error.product.not.found.message", "api.error.product.removal.failed", null);
-        productRepository.deleteById(id);
-    }
 }
