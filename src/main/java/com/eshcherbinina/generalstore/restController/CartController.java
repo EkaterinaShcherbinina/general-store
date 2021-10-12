@@ -2,18 +2,15 @@ package com.eshcherbinina.generalstore.restController;
 
 import com.eshcherbinina.generalstore.dto.Cart;
 import com.eshcherbinina.generalstore.dto.CartItem;
-import com.eshcherbinina.generalstore.dto.ProductDTO;
 import com.eshcherbinina.generalstore.exception.CustomException;
-import com.eshcherbinina.generalstore.exception.ErrorDetails;
+import com.eshcherbinina.generalstore.responses.ErrorDetails;
 import com.eshcherbinina.generalstore.exception.OrderCreationFailed;
 import com.eshcherbinina.generalstore.service.ICartService;
 import com.eshcherbinina.generalstore.service.IOrderService;
-import com.eshcherbinina.generalstore.utils.SessionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

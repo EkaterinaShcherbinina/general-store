@@ -1,6 +1,7 @@
 package com.eshcherbinina.generalstore.config.sucurity;
 
 import com.eshcherbinina.generalstore.dao.repositiry.UserRepository;
+import com.eshcherbinina.generalstore.utils.Constants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -40,7 +41,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         String token = request.getHeader("Authorization");
         if (token != null) {
-            final Claims claims = Jwts.parser().setSigningKey("SecretKeyToGenJWTs".getBytes())
+            final Claims claims = Jwts.parser().setSigningKey(Constants.SECRET_TOKEN.getBytes())
                     .parseClaimsJws(token.replace("Bearer", ""))
                     .getBody();
             String user = claims.getSubject();

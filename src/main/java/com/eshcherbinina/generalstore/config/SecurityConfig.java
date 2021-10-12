@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/product").hasAuthority("ADMIN")
                 .antMatchers("/order/**").hasAuthority("USER")
                 .antMatchers(HttpMethod.GET, "/product/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/request-password-request", "/request-password").permitAll()
                 .and()
                 .addFilter(new AuthenticationFilter(authenticationManager()))
                 .addFilter(new AuthorizationFilter(authenticationManager()))

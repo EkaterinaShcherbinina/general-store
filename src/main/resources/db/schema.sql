@@ -19,6 +19,14 @@ CREATE TABLE users_roles (
     CONSTRAINT user_fk FOREIGN KEY (userId) REFERENCES user (id)
 );
 
+CREATE TABLE reset_password_tokens (
+    id bigint NOT NULL auto_increment,
+    token varchar NOT NULL,
+    userId bigint NOT NULL,
+    PRIMARY KEY (id),
+    constraint user_token_fk foreign key (userId) references user (id)
+);
+
 CREATE TABLE orders (
     id bigint unsigned NOT NULL auto_increment,
     orderDate DATE NOT NULL,

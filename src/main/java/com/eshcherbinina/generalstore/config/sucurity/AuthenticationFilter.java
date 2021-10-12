@@ -1,6 +1,7 @@
 package com.eshcherbinina.generalstore.config.sucurity;
 
 import com.eshcherbinina.generalstore.dao.entity.User;
+import com.eshcherbinina.generalstore.utils.Constants;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -52,8 +53,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         String token = Jwts.builder()
                 .setSubject(((org.springframework.security.core.userdetails.User) authentication.getPrincipal()).getUsername())
                 .claim("AUTHORITIES", authorities)
-                .setExpiration(new Date(System.currentTimeMillis() + 864_000_000))
-                .signWith(SignatureAlgorithm.HS512, "SecretKeyToGenJWTs".getBytes())
+                .setExpiration(new Date(System.currentTimeMillis() + Constants.EXPIRATION_TIME))
+                .signWith(SignatureAlgorithm.HS512, Constants.SECRET_TOKEN.getBytes())
                 .compact();
         response.addHeader("Authorization", "Bearer " + token);
         response.getWriter().append("OK");

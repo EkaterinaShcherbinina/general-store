@@ -59,8 +59,9 @@ public class OrderService implements IOrderService{
     @Override
     public void cancelOrder(long id) {
         Order order = orderRepository.findById(id);
-        if(order == null) ExceptionCreator.throwException(ErrorType.ENTITY_NOT_FOUND,
-                "api.error.order.not.found", "api.error.order.cancel.failed", null);
+        if(order == null) throw new ResponseStatusException(
+                HttpStatus.NO_CONTENT,
+                messageSource.getMessage("api.error.order.cancel.failed", null, Locale.ENGLISH));
         if(order.getStatus() != OrderStatus.in_progress) throw new ResponseStatusException(
                 HttpStatus.CONFLICT,
                 messageSource.getMessage("api.response.order.cancellation.failed", null, Locale.ENGLISH));

@@ -1,4 +1,4 @@
-package com.eshcherbinina.generalstore.exception;
+package com.eshcherbinina.generalstore.responses;
 
 import lombok.Builder;
 

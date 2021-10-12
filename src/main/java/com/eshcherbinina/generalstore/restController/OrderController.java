@@ -1,10 +1,6 @@
 package com.eshcherbinina.generalstore.restController;
 
 import com.eshcherbinina.generalstore.dto.OrderDTO;
-import com.eshcherbinina.generalstore.dto.ProductDTO;
-import com.eshcherbinina.generalstore.exception.CustomException;
-import com.eshcherbinina.generalstore.exception.ErrorDetails;
-import com.eshcherbinina.generalstore.exception.OrderCreationFailed;
 import com.eshcherbinina.generalstore.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
