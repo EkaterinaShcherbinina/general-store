@@ -1,8 +1,6 @@
 package com.eshcherbinina.generalstore.dto;
 
 import com.eshcherbinina.generalstore.dao.entity.OrderProduct;
-import com.eshcherbinina.generalstore.dao.entity.Product;
-import com.eshcherbinina.generalstore.restController.OrderController;
 import com.eshcherbinina.generalstore.restController.ProductController;
 import lombok.Data;
 import org.springframework.hateoas.RepresentationModel;

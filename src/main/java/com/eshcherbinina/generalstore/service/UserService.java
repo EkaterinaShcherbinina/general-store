@@ -3,9 +3,9 @@ package com.eshcherbinina.generalstore.service;
 import com.eshcherbinina.generalstore.dao.entity.PasswordResetToken;
 import com.eshcherbinina.generalstore.dao.entity.Role;
 import com.eshcherbinina.generalstore.dao.entity.User;
-import com.eshcherbinina.generalstore.dao.repositiry.PasswordResetRepository;
-import com.eshcherbinina.generalstore.dao.repositiry.RoleRepository;
-import com.eshcherbinina.generalstore.dao.repositiry.UserRepository;
+import com.eshcherbinina.generalstore.dao.repository.PasswordResetRepository;
+import com.eshcherbinina.generalstore.dao.repository.RoleRepository;
+import com.eshcherbinina.generalstore.dao.repository.UserRepository;
 import com.eshcherbinina.generalstore.dto.ResetPassword;
 import com.eshcherbinina.generalstore.dto.UserDTO;
 import com.eshcherbinina.generalstore.exception.ErrorType;
@@ -68,9 +68,7 @@ public class UserService implements IUserService{
         passwordResetToken.setUser(user);
         passwordResetRepository.save(passwordResetToken);
 
-        boolean result = new AmazonSes().sendPasswordResetRequest(user.getEmail(), token);
-        if(!result)
-        return;
+        new AmazonSes().sendPasswordResetRequest(user.getEmail(), token);
     }
 
     @Override

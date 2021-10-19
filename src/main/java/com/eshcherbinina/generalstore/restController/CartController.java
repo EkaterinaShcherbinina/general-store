@@ -42,15 +42,15 @@ public class CartController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String> addToCart(@RequestParam long productId) {
-        cartService.addItemToCart(productId, cart);
+    public ResponseEntity<String> addToCart(@RequestParam long id) {
+        cartService.addItemToCart(id, cart);
         return new ResponseEntity<>(messageSource.getMessage("api.response.cart.item.creation.successful",
-                null, Locale.ENGLISH), HttpStatus.CREATED);
+                null, Locale.ENGLISH), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity<String> removeItem(@RequestParam long productId) {
-        CartItem item = cart.get(productId);
+    public ResponseEntity<String> removeItem(@RequestParam long id) {
+        CartItem item = cart.get(id);
         if(item != null) cart.remove(item);
         return new ResponseEntity<>(messageSource.getMessage("api.response.cart.item.removal.successful",
                 null, Locale.ENGLISH), HttpStatus.OK);
@@ -65,8 +65,11 @@ public class CartController {
 
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<String> modifyCartItem(@Valid @RequestBody CartItem cartItem) {
-        CartItem item = cart.get(cartItem);
-        if(item != null) item.setQuantity(cartItem.getQuantity());
+        CartItem item = cart.get(cartItem.getId());
+        if(item != null) {
+            item.setQuantity(cartItem.getQuantity());
+            cart.put(item.getId(), item);
+        }
         return new ResponseEntity<>(messageSource.getMessage("api.response.cart.item.change.successful",
                 null, Locale.ENGLISH), HttpStatus.OK);
     }

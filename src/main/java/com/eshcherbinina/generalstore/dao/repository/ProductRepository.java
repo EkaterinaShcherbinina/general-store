@@ -1,4 +1,4 @@
-package com.eshcherbinina.generalstore.dao.repositiry;
+package com.eshcherbinina.generalstore.dao.repository;
 
 import com.eshcherbinina.generalstore.dao.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

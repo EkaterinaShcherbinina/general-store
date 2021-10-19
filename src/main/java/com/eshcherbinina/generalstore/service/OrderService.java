@@ -1,9 +1,9 @@
 package com.eshcherbinina.generalstore.service;
 
 import com.eshcherbinina.generalstore.dao.entity.*;
-import com.eshcherbinina.generalstore.dao.repositiry.OrderRepository;
-import com.eshcherbinina.generalstore.dao.repositiry.ProductRepository;
-import com.eshcherbinina.generalstore.dao.repositiry.UserRepository;
+import com.eshcherbinina.generalstore.dao.repository.OrderRepository;
+import com.eshcherbinina.generalstore.dao.repository.ProductRepository;
+import com.eshcherbinina.generalstore.dao.repository.UserRepository;
 import com.eshcherbinina.generalstore.dto.Cart;
 import com.eshcherbinina.generalstore.dto.CartItem;
 import com.eshcherbinina.generalstore.dto.OrderDTO;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -45,7 +46,9 @@ public class OrderService implements IOrderService{
         User user = userRepository.findByEmail(userName);
         if(user == null) ExceptionCreator.throwException(ErrorType.ENTITY_NOT_FOUND,
                 "api.error.user.not.found", "api.error.order.creation.failed", null);
-        return user.getOrders().stream().map(order -> new OrderDTO(order)).collect(Collectors.toList());
+        if(!user.getOrders().isEmpty())
+            return user.getOrders().stream().map(order -> new OrderDTO(order)).collect(Collectors.toList());
+        return new ArrayList<>();
     }
 
     @Override

@@ -1,7 +1,7 @@
-INSERT INTO product (title, quantity, price) VALUES ('cat toy', '3', '25.0'),
-                                                    ('cat food', '2', '35.0');
+INSERT INTO product (title, quantity, price) VALUES ('Cat leashes', '10', '30.0'),
+                                                    ('Cat beds', '5', '55.0');
 
-INSERT INTO users (email, password) VALUES ('test@gmail.com', '$2a$10$EyY5d8es3uJN7H0Rw/yoou8vbMXZKDk2.eBUVz3hnCkaJeaP37xbC');
+INSERT INTO users (email, password) VALUES ('sem.consequat@gmail.com', '$2a$10$EyY5d8es3uJN7H0Rw/yoou8vbMXZKDk2.eBUVz3hnCkaJeaP37xbC');
 
 
 INSERT INTO orders (orderDate, status, userId) VALUES (CURRENT_TIMESTAMP , 'shipped', '1'),

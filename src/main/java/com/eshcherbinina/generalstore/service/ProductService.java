@@ -1,14 +1,11 @@
 package com.eshcherbinina.generalstore.service;
 
 import com.eshcherbinina.generalstore.dao.entity.Product;
-import com.eshcherbinina.generalstore.dao.repositiry.ProductRepository;
+import com.eshcherbinina.generalstore.dao.repository.ProductRepository;
 import com.eshcherbinina.generalstore.dto.ProductDTO;
-import com.eshcherbinina.generalstore.exception.EntityNotFoundException;
 import com.eshcherbinina.generalstore.exception.ErrorType;
 import com.eshcherbinina.generalstore.exception.ExceptionCreator;
-import com.eshcherbinina.generalstore.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

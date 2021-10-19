@@ -2,7 +2,7 @@ package com.eshcherbinina.generalstore.config.sucurity;
 
 import com.eshcherbinina.generalstore.dao.entity.Role;
 import com.eshcherbinina.generalstore.dao.entity.User;
-import com.eshcherbinina.generalstore.dao.repositiry.UserRepository;
+import com.eshcherbinina.generalstore.dao.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Set;
 
 @Component

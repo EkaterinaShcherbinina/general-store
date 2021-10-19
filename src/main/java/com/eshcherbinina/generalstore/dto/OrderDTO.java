@@ -4,10 +4,8 @@ import com.eshcherbinina.generalstore.dao.entity.Order;
 import com.eshcherbinina.generalstore.dao.entity.OrderProduct;
 import com.eshcherbinina.generalstore.dao.entity.OrderStatus;
 import com.eshcherbinina.generalstore.restController.OrderController;
-import com.eshcherbinina.generalstore.restController.ProductController;
 import lombok.Data;
 import org.springframework.hateoas.RepresentationModel;
-import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 import java.util.Set;

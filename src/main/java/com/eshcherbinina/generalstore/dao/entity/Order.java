@@ -22,6 +22,7 @@ public class Order {
     private Date orderDate;
 
     @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @ToString.Exclude
